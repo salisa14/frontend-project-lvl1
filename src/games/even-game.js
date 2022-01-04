@@ -1,22 +1,13 @@
 import readlineSync from 'readline-sync';
+import { checkTheAnswer, end, randomNum } from '../index.js';
 
-const randomNum = () => Math.floor(Math.random() * 100);
 const checkTheNum = (givenNum) => {
   if (givenNum % 2 === 0) {
     return 'yes';
   }
   return 'no';
 };
-const checkTheAnswer = (answer, correctAnswer) => {
-  if (answer === correctAnswer) {
-    return true;
-  }
-  return false;
-};
-const end = (answer, correctAnswer, name) => {
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-  console.log(`Let's try again, ${name}`);
-};
+
 const evenGame = () => {
   let counter = 0;
   let answer = '';

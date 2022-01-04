@@ -6,3 +6,5 @@
 [![example workflow](https://github.com/salisa14/frontend-project-lvl1/actions/workflows/github-actions.yml/badge.svg)](https://github.com/salisa14/frontend-project-lvl1/actions/workflows/github-actions.yml)
 
 [![asciicast](https://asciinema.org/a/zxCgvo6KDUZ1UPwWDB7imTlIX.svg)](https://asciinema.org/a/zxCgvo6KDUZ1UPwWDB7imTlIX)
+
+[![asciicast](https://asciinema.org/a/FTBYKOI9GGBSpnNwAM9mNu8uu.svg)](https://asciinema.org/a/FTBYKOI9GGBSpnNwAM9mNu8uu)
