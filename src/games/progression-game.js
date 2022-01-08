@@ -1,29 +1,34 @@
 import readlineSync from 'readline-sync';
 import { checkTheAnswer, end, randomNum } from '../index.js';
 
-const checkTheNum = (givenNum) => {
-  if (givenNum % 2 === 0) {
-    return 'yes';
-  }
-  return 'no';
-};
-
-const evenGame = () => {
+const progression = () => {
   let counter = 0;
   let answer = '';
   let correctAnswer = '';
-  let givenNum = 0;
   let isCorrect = true;
   const chance = 3;
+
+  let num = 1;
+  let gap = 0;
+  let index = 0;
+
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  console.log('What number is missing in the progression?');
   while (counter < chance) {
-    givenNum = randomNum(100);
-    console.log(`Question: ${givenNum}`);
+    const numbers = [];
+    num = randomNum(20);
+    gap = Math.floor((Math.random() + 1) * 5);
+    for (let i = 1; i < 11; i += 1) {
+      numbers.push(num);
+      num += gap;
+    }
+    index = randomNum(10);
+    correctAnswer = numbers[index].toString();
+    numbers[index] = '..';
+    console.log(`Question: ${numbers.join(' ')}`);
     answer = readlineSync.question('Your answer: ');
-    correctAnswer = checkTheNum(givenNum);
     isCorrect = checkTheAnswer(answer, correctAnswer);
     if (isCorrect) {
       console.log('Correct!');
@@ -34,4 +39,4 @@ const evenGame = () => {
   }
   return console.log(`Congratulations, ${name}!`);
 };
-export default evenGame;
+export default progression;

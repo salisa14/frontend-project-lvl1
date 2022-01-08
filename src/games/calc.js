@@ -22,8 +22,8 @@ const calcGame = () => {
   console.log(`Hello, ${name}!`);
   console.log('What is the result of the expression?');
   while (counter < chance) {
-    num1 = randomNum();
-    num2 = randomNum();
+    num1 = randomNum(100);
+    num2 = randomNum(100);
     operator = randomOperator();
     if (operator === '+') {
       res = num1 + num2;

@@ -23,8 +23,8 @@ const gcdGame = () => {
   console.log(`Hello, ${name}!`);
   console.log('Find the greatest common divisor of given numbers.');
   while (counter < chance) {
-    num1 = randomNum();
-    num2 = randomNum();
+    num1 = randomNum(100);
+    num2 = randomNum(100);
     correctAnswer = findGCD(num1, num2).toString();
     console.log(`Question: ${num1} ${num2}`);
     answer = readlineSync.question('Your answer: ');
