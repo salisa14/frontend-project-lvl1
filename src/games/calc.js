@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import { checkTheAnswer, end, randomNum } from '../index.js';
+import {
+  randomNum, welcome, win, winOrLose, question, rounds,
+} from '../index.js';
 
 const randomOperator = () => {
   const operators = ['+', '-', '*'];
@@ -8,20 +9,16 @@ const randomOperator = () => {
 };
 const calcGame = () => {
   let counter = 0;
-  let answer = '';
   let correctAnswer = '';
   let num1 = 0;
   let num2 = 0;
-  let isCorrect = true;
-  const chance = 3;
   let res = 0;
   let operator = '';
+  let value = '';
 
-  console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!`);
-  console.log('What is the result of the expression?');
-  while (counter < chance) {
+  const description = 'What is the result of the expression?';
+  const name = welcome(description);
+  while (counter < rounds) {
     num1 = randomNum(100);
     num2 = randomNum(100);
     operator = randomOperator();
@@ -33,16 +30,10 @@ const calcGame = () => {
       res = num1 * num2;
     }
     correctAnswer = res.toString();
-    console.log(`Question: ${num1} ${operator} ${num2}`);
-    answer = readlineSync.question('Your answer: ');
-    isCorrect = checkTheAnswer(answer, correctAnswer);
-    if (isCorrect) {
-      console.log('Correct!');
-      counter += 1;
-    } else {
-      return end(answer, correctAnswer, name);
-    }
+    value = `${num1} ${operator} ${num2}`;
+    question(value);
+    counter = winOrLose(correctAnswer, name, counter);
   }
-  return console.log(`Congratulations, ${name}!`);
+  return win(name, counter, rounds);
 };
 export default calcGame;
