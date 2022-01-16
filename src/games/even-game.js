@@ -1,6 +1,4 @@
-import {
-  randomNum, welcome, win, winOrLose, question, rounds,
-} from '../index.js';
+import { randomNum, letsPlay } from '../index.js';
 
 const checkTheNum = (givenNum) => {
   if (givenNum % 2 === 0) {
@@ -8,22 +6,17 @@ const checkTheNum = (givenNum) => {
   }
   return 'no';
 };
-
-const evenGame = () => {
-  let counter = 0;
-  let correctAnswer = '';
+const expressionAndAnswer = () => {
   let givenNum = 0;
-  let value = '';
+  const value = [];
+  givenNum = randomNum(100);
 
+  value.push(`${givenNum}`);
+  value.push(checkTheNum(givenNum));
+  return value;
+};
+const evenGame = () => {
   const description = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const name = welcome(description);
-  while (counter < rounds) {
-    givenNum = randomNum(100);
-    correctAnswer = checkTheNum(givenNum);
-    value = `${givenNum}`;
-    question(value);
-    counter = winOrLose(correctAnswer, name, counter);
-  }
-  return win(name, counter, rounds);
+  letsPlay(description, expressionAndAnswer);
 };
 export default evenGame;

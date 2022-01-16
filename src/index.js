@@ -1,44 +1,39 @@
 import readlineSync from 'readline-sync';
 
-const rounds = 3;
 const checkTheAnswer = (answer, correctAnswer) => {
   if (answer === correctAnswer) {
     return true;
   }
   return false;
 };
-const welcome = (question) => {
+
+const randomNum = (n) => Math.floor(Math.random() * n);
+
+const letsPlay = (description, expressionAndAnswer) => {
+  let counter = 0;
+  const rounds = 3;
+  let answer = '';
+  let isCorrect = true;
+
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log(question);
-  return name;
-};
-const question = (value) => {
-  console.log(`Question: ${value}`);
-};
-const end = (answer, correctAnswer) => {
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-};
-const winOrLose = (correctAnswer, name, counter) => {
-  const answer = readlineSync.question('Your answer: ');
-  const isCorrect = checkTheAnswer(answer, correctAnswer);
-  let attempt = counter;
-  if (isCorrect) {
-    console.log('Correct!');
-    attempt += 1;
-  } else {
-    return end(answer, correctAnswer, name);
+  console.log(description);
+  while (counter < rounds) {
+    const value = expressionAndAnswer();
+    const expression = value[0];
+    console.log(`Question: ${expression}`);
+    const correctAnswer = value[1];
+    answer = readlineSync.question('Your answer: ');
+    isCorrect = checkTheAnswer(answer, correctAnswer);
+    if (isCorrect) {
+      console.log('Correct!');
+      counter += 1;
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+      return console.log(`Let's try again, ${name}!`);
+    }
   }
-  return attempt;
+  return console.log(`Congratulations, ${name}!`);
 };
-const randomNum = (n) => Math.floor(Math.random() * n);
-const win = (player, counter, chance) => {
-  if (counter === chance) {
-    return console.log(`Congratulations, ${player}!`);
-  }
-  return console.log(`Let's try again, ${player}!`);
-};
-export {
-  randomNum, welcome, winOrLose, win, question, rounds,
-};
+export { randomNum, letsPlay };

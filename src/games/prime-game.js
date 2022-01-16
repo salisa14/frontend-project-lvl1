@@ -1,6 +1,4 @@
-import {
-  randomNum, welcome, win, winOrLose, question, rounds,
-} from '../index.js';
+import { randomNum, letsPlay } from '../index.js';
 
 const isprime = (num) => {
   let i = 2;
@@ -12,25 +10,20 @@ const isprime = (num) => {
   }
   return 'yes';
 };
-const primeGame = () => {
-  let counter = 0;
-  let correctAnswer = 'yes';
-  let num = 1;
-  let value = '';
-
-  const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  const name = welcome(description);
-  while (counter < rounds) {
-    num = randomNum(100);
-    if (num === 0 || num === 1) {
-      correctAnswer = 'no';
-    } else {
-      correctAnswer = isprime(num);
-    }
-    value = `${num}`;
-    question(value);
-    counter = winOrLose(correctAnswer, name, counter);
+const expressionAndAnswer = () => {
+  const num = randomNum(100);
+  const value = [];
+  value.push(`${num}`);
+  if (num === 0 || num === 1) {
+    value.push('no');
+  } else {
+    value.push(isprime(num));
   }
-  return win(name, counter, rounds);
+  return value;
+};
+
+const primeGame = () => {
+  const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  letsPlay(description, expressionAndAnswer);
 };
 export default primeGame;

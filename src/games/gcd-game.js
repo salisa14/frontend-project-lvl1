@@ -1,6 +1,4 @@
-import {
-  randomNum, welcome, win, winOrLose, question, rounds,
-} from '../index.js';
+import { randomNum, letsPlay } from '../index.js';
 
 const findGCD = (num1, num2) => {
   const a = num1;
@@ -10,23 +8,16 @@ const findGCD = (num1, num2) => {
   }
   return a;
 };
+const expressionAndAnswer = () => {
+  const num1 = randomNum(100);
+  const num2 = randomNum(100);
+  const value = [];
+  value.push(`${num1} ${num2}`);
+  value.push(findGCD(num1, num2).toString());
+  return value;
+};
 const gcdGame = () => {
-  let counter = 0;
-  let correctAnswer = '';
-  let num1 = 0;
-  let num2 = 0;
-  let value = '';
-
   const description = 'Find the greatest common divisor of given numbers.';
-  const name = welcome(description);
-  while (counter < rounds) {
-    num1 = randomNum(100);
-    num2 = randomNum(100);
-    correctAnswer = findGCD(num1, num2).toString();
-    value = `${num1} ${num2}`;
-    question(value);
-    counter = winOrLose(correctAnswer, name, counter);
-  }
-  return win(name, counter, rounds);
+  letsPlay(description, expressionAndAnswer);
 };
 export default gcdGame;
