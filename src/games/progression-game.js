@@ -1,26 +1,26 @@
-import { randomNum, letsPlay } from '../index.js';
+import letsPlay from '../index.js';
+import randomNum from '../utils.js';
 
-const expressionAndAnswer = () => {
-  const value = [];
+const description = 'What number is missing in the progression?';
+const makeAProgression = () => {
   const numbers = [];
-  let index = 0;
-  let num = randomNum(20);
-  let hiddenNum = 1;
-  const gap = Math.floor((Math.random() + 1) * 5);
+  let num = randomNum(0, 20);
+  const gap = randomNum(1, 6);
   for (let i = 1; i < 11; i += 1) {
     numbers.push(num);
     num += gap;
   }
-  index = randomNum(10);
-  hiddenNum = numbers[index].toString();
+  return numbers;
+};
+const makeExpressionAndAnswer = () => {
+  const index = randomNum(0, 10);
+  const numbers = makeAProgression();
+  const correctAnswer = numbers[index].toString();
   numbers[index] = '..';
-  value.push(`${numbers.join(' ')}`);
-  value.push(hiddenNum);
-  return value;
+  const expression = `${numbers.join(' ')}`;
+  return [expression, correctAnswer];
 };
-
-const progression = () => {
-  const description = 'What number is missing in the progression?';
-  letsPlay(description, expressionAndAnswer);
+const progressionGame = () => {
+  letsPlay(description, makeExpressionAndAnswer);
 };
-export default progression;
+export default progressionGame;

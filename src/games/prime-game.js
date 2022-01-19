@@ -1,29 +1,27 @@
-import { randomNum, letsPlay } from '../index.js';
+import letsPlay from '../index.js';
+import randomNum from '../utils.js';
 
-const isprime = (num) => {
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const isPrime = (num) => {
   let i = 2;
+  if (num === 0 || num === 1) {
+    return false;
+  }
   while (i <= (num / 2)) {
     if (num % i === 0) {
-      return 'no';
+      return false;
     }
     i += 1;
   }
-  return 'yes';
+  return true;
 };
-const expressionAndAnswer = () => {
-  const num = randomNum(100);
-  const value = [];
-  value.push(`${num}`);
-  if (num === 0 || num === 1) {
-    value.push('no');
-  } else {
-    value.push(isprime(num));
-  }
-  return value;
+const makeExpressionAndAnswer = () => {
+  const num = randomNum(0, 100);
+  const expression = `${num}`;
+  const correctAnswer = isPrime(num) ? 'yes' : 'no';
+  return [expression, correctAnswer];
 };
-
 const primeGame = () => {
-  const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  letsPlay(description, expressionAndAnswer);
+  letsPlay(description, makeExpressionAndAnswer);
 };
 export default primeGame;

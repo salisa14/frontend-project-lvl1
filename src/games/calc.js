@@ -1,19 +1,14 @@
-import { randomNum, letsPlay } from '../index.js';
+import letsPlay from '../index.js';
+import randomNum from '../utils.js';
 
-const randomOperator = () => {
+const description = 'What is the result of the expression?';
+const makeRandomOperator = () => {
   const operators = ['+', '-', '*'];
-  const opindex = Math.floor(Math.random() * 3);
+  const opindex = randomNum(0, 3);
   return operators[opindex];
 };
-const expressionAndAnswer = () => {
-  let num1 = 0;
-  let num2 = 0;
-  let res = 0;
-  let operator = '';
-  const value = [];
-  num1 = randomNum(100);
-  num2 = randomNum(100);
-  operator = randomOperator();
+const getResultOfCase = (num1, num2, operator) => {
+  let res = '';
   if (operator === '+') {
     res = num1 + num2;
   } else if (operator === '-') {
@@ -21,12 +16,17 @@ const expressionAndAnswer = () => {
   } else {
     res = num1 * num2;
   }
-  value.push(`${num1} ${operator} ${num2}`);
-  value.push(res.toString());
-  return value;
+  return res.toString();
+};
+const makeExpressionAndAnswer = () => {
+  const num1 = randomNum(0, 100);
+  const num2 = randomNum(1, 100);
+  const operator = makeRandomOperator();
+  const expression = `${num1} ${operator} ${num2}`;
+  const correctAnswer = getResultOfCase(num1, num2, operator);
+  return [expression, correctAnswer];
 };
 const calcGame = () => {
-  const description = 'What is the result of the expression?';
-  letsPlay(description, expressionAndAnswer);
+  letsPlay(description, makeExpressionAndAnswer);
 };
 export default calcGame;

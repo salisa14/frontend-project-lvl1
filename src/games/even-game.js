@@ -1,22 +1,20 @@
-import { randomNum, letsPlay } from '../index.js';
+import letsPlay from '../index.js';
+import randomNum from '../utils.js';
 
-const checkTheNum = (givenNum) => {
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+const isEven = (givenNum) => {
   if (givenNum % 2 === 0) {
-    return 'yes';
+    return true;
   }
-  return 'no';
+  return false;
 };
-const expressionAndAnswer = () => {
-  let givenNum = 0;
-  const value = [];
-  givenNum = randomNum(100);
-
-  value.push(`${givenNum}`);
-  value.push(checkTheNum(givenNum));
-  return value;
+const makeExpressionAndAnswer = () => {
+  const givenNum = randomNum(0, 100);
+  const expression = `${givenNum}`;
+  const correctAnswer = isEven(givenNum) ? 'yes' : 'no';
+  return [expression, correctAnswer];
 };
 const evenGame = () => {
-  const description = 'Answer "yes" if the number is even, otherwise answer "no".';
-  letsPlay(description, expressionAndAnswer);
+  letsPlay(description, makeExpressionAndAnswer);
 };
 export default evenGame;
