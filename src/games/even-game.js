@@ -3,14 +3,13 @@ import randomNum from '../utils.js';
 
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
 const isEven = (givenNum) => {
-  if (givenNum % 2 === 0) {
-    return true;
-  }
-  return false;
+  const even = givenNum % 2 === 0;
+  return even;
 };
+
 const makeExpressionAndAnswer = () => {
   const givenNum = randomNum(0, 100);
-  const expression = `${givenNum}`;
+  const expression = String(givenNum);
   const correctAnswer = isEven(givenNum) ? 'yes' : 'no';
   return [expression, correctAnswer];
 };
