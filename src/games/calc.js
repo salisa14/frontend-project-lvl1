@@ -8,28 +8,16 @@ const makeRandomOperator = () => {
   return operators[opindex];
 };
 const getResultOfCase = (num1, num2, operator) => {
-  let res = '';
   switch (operator) {
     case '+':
-      res = num1 + num2;
-      break;
+      return num1 + num2;
     case '-':
-      res = num1 - num2;
-      break;
+      return num1 - num2;
     case '*':
-      res = num1 * num2;
-      break;
+      return num1 * num2;
     default:
-      res = null;
+      return null;
   }
-  if (operator === '+') {
-    res = num1 + num2;
-  } else if (operator === '-') {
-    res = num1 - num2;
-  } else {
-    res = num1 * num2;
-  }
-  return res;
 };
 const makeExpressionAndAnswer = () => {
   const num1 = randomNum(0, 100);

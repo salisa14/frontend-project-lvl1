@@ -2,10 +2,7 @@ import letsPlay from '../index.js';
 import randomNum from '../utils.js';
 
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
-const isEven = (givenNum) => {
-  const even = givenNum % 2 === 0;
-  return even;
-};
+const isEven = (givenNum) => givenNum % 2 === 0;
 
 const makeExpressionAndAnswer = () => {
   const givenNum = randomNum(0, 100);

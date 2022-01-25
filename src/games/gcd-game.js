@@ -3,12 +3,10 @@ import randomNum from '../utils.js';
 
 const description = 'Find the greatest common divisor of given numbers.';
 const findGCD = (num1, num2) => {
-  const a = num1;
-  const b = num2;
-  if (b) {
-    return findGCD(b, a % b);
+  if (num2) {
+    return findGCD(num2, num1 % num2);
   }
-  return a;
+  return num1;
 };
 const makeExpressionAndAnswer = () => {
   const num1 = randomNum(0, 100);
